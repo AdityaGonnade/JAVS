@@ -1,11 +1,15 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using JWT_Token_Example.Context;
 using JWT_Token_Example.Helpers;
 using JWT_Token_Example.Models;
+using JWT_Token_Example.Models.DTO;
+using JWT_Token_Example.UtilityService;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,47 +21,53 @@ namespace JWT_Token_Example.Controllers;
 public class UserController : ControllerBase
 {
     private readonly AppDbContext _authContext;
+    private readonly IConfiguration _configuration;
+    private readonly IEmailService _emailService;
 
-    public UserController(AppDbContext appDbContext)
+    public UserController(AppDbContext appDbContext, IConfiguration configuration, IEmailService emailService)
     {
         _authContext = appDbContext;
+        _configuration = configuration;
+        _emailService = emailService;
     }
-    
+    [AllowAnonymous]
     [HttpPost("authenticate")]
     public async Task<IActionResult> Authenticate([FromBody] User userObj)
     {
-        //check if user object is null or not
-        if (userObj == null)
-        {
-            return BadRequest(new
+            //check if user object is null or not
+            if (userObj == null)
             {
-                Message = "userObj is null"
+                return BadRequest(new
+                {
+                    Message = "userObj is null"
+                });
+            }
+
+            // check is user is present in database
+            var user = await _authContext.Users.FirstOrDefaultAsync(x => x.UserName == userObj.UserName);
+
+            // if user not present in database return message
+            if (user == null)
+            {
+                return NotFound(new { Message = "User Not Found!" });
+            }
+
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password ))
+            {
+                return BadRequest(new { Message = "Password is Incorrect" });
+            }
+            
+            user.Token = JwtController.CreateJwt(user);
+
+            return Ok(new
+            {
+                Token = user.Token,
+                Role = user.Role,
+                Message = "Login Success!"
             });
-        }
-
-        // check is user is present in database
-        var user = await _authContext.Users.FirstOrDefaultAsync(x => x.UserName == userObj.UserName);
-
-        // if user not present in database return message
-        if (user == null)
-        {
-            return NotFound(new { Message = "User Not Found!" });
-        }
-
-        if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
-        {
-            return BadRequest(new { Message = "Password is Incorrect" });
-        }
-        //
-        // user.Token = CreateJwt(user);
-        //
-        return Ok(new
-        {
-            // Token = user.Token,
-            Message = "Login Success!"
-        });
     }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> RegisterUser([FromBody] User userObj)
     {
@@ -146,36 +156,77 @@ public class UserController : ControllerBase
         return sb.ToString();
     }
 
-    private string CreateJwt(User user)
-    {
-        //header.payload.signature
-        var jwtTokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes("veryverysecret...");
-        var identity = new ClaimsIdentity(new Claim[]
-        {
-            new Claim(ClaimTypes.Role, user.Role),
-            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
-        });
-
-        var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
-
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = identity,
-            Expires = DateTime.Now.AddDays(1),
-            SigningCredentials = credentials
-        };
-
-        var token = jwtTokenHandler.CreateToken(tokenDescriptor);
-        return jwtTokenHandler.WriteToken(token);
-
-    }
+    
     
     [Authorize]
     [HttpGet]
     public async Task<ActionResult<User>> GetAllUsers()
     {
         return Ok(await _authContext.Users.ToListAsync());
+    }
+    
+    [HttpPost("send-reset-email/{email}")] 
+    public async Task<IActionResult> SendEmail(string email)
+    {
+        var user = await _authContext.Users.FirstOrDefaultAsync(a => a.Email == email);
+        if (user is null)
+        {
+            return NotFound(new
+            {
+                StatusCode = 404,
+                Message = "Email Doesn't Exist"
+            });
+        }
+
+        var tokenBytes = RandomNumberGenerator.GetBytes(64);
+        var emailToken = Convert.ToBase64String(tokenBytes);
+        user.ResetPasswordToken = emailToken;
+        user.ResetPasswordExpiry = DateTime.Now.AddMinutes(15);
+        string from = _configuration["EmailSettings:From"];
+        var emailModel = new EmailModel(email, "Reset Password!", EmailBody.EmailStringBody(email, emailToken));
+        _emailService.SendEmail(emailModel);
+        _authContext.Entry(user).State = EntityState.Modified;
+        await _authContext.SaveChangesAsync();
+        return Ok(new
+        {
+            StatusCode = 200,
+            Message = "Email Sent!"
+        });
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+    {
+        var newToken = resetPasswordDto.EmailToken.Replace(" ", "+");
+        var user = await _authContext.Users.AsNoTracking().FirstOrDefaultAsync(a => a.Email == resetPasswordDto.Email);
+        if (user is null)
+        {
+            return NotFound(new
+            {
+                StatusCode = 404,
+                Message = "User Doesn't Exist"
+            });
+        }
+
+        var tokenCode = user.ResetPasswordToken;
+        DateTime emailTokenExpiry = user.ResetPasswordExpiry;
+        if (tokenCode != resetPasswordDto.EmailToken || emailTokenExpiry < DateTime.Now)
+        {
+            return BadRequest(new
+            {
+                StatusCode = 400,
+                Message = " Invalid Reset Link"
+            });
+        }
+
+        user.Password = PasswordHasher.HashPassword(resetPasswordDto.NewPassword);
+        _authContext.Entry(user).State = EntityState.Modified;
+        await _authContext.SaveChangesAsync();
+        return Ok(new
+        {
+            StatusCode = 200,
+            Message = "Password Reset Successfully"
+        });
     }
 
 }

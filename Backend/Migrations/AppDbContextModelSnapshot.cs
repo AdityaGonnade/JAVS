@@ -37,11 +37,17 @@ namespace JWT_Token_Example.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("text");
 
-                    b.Property<int>("MobileNumber")
+                    b.Property<int?>("MobileNumber")
                         .HasColumnType("integer");
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ResetPasswordExpiry")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ResetPasswordToken")
                         .HasColumnType("text");
 
                     b.Property<string>("Role")
@@ -57,6 +63,29 @@ namespace JWT_Token_Example.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("JWT_Token_Example.Models.Vendor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GST")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PAN")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("vendorId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("vendors", (string)null);
                 });
 #pragma warning restore 612, 618
         }
