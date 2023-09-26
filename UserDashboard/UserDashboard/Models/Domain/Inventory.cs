@@ -11,7 +11,7 @@ namespace UserDashboard.Models.Domain
         [BsonRepresentation(BsonType.ObjectId)]
         public string id { get; set; }
 
-        public string name { get; set; }
+        public string ProductName { get; set; }
 
         public string category { get; set; }
 
@@ -26,8 +26,9 @@ namespace UserDashboard.Models.Domain
         public int quantity { get; set; }
         public string description { get; set; }
         public string dateUploaded { get; set; }
-        public string tags { get; set; }
+        public List<string> tags { get; set; }
         public string imagesURL { get; set; }
+        public int Price { get; set; }
     }
 
 

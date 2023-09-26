@@ -23,7 +23,7 @@ namespace UserDashboard.Services
         {
             MongoClient client = new MongoClient(inventorySettings.Value.ConnectionURI);
             IMongoDatabase database = client.GetDatabase(inventorySettings.Value.DatabaseName);
-            InventoryCollection = database.GetCollection<Inventory>(inventorySettings.Value.CollectionName);
+            InventoryCollection = database.GetCollection<Inventory>(inventorySettings.Value.InventoryCollectionName);
         }
 
 
@@ -51,6 +51,7 @@ namespace UserDashboard.Services
             sellerList.dateUploaded = SellerInv.DateUploaded;
             sellerList.tags = SellerInv.tags;
             sellerList.imagesURL = SellerInv.imgURL;
+            sellerList.Price = SellerInv.Price;
 
             var ListSell = new List<Seller>();
             ListSell.Add(sellerList);
@@ -81,10 +82,9 @@ namespace UserDashboard.Services
 
                 var Inv = new Inventory
                 {
-                    name = SellerInv.productName,
+                    ProductName = SellerInv.productName,
                     category = SellerInv.category,
                     totalQuantity = 0,
-
                     sellers = ListSell,
 
 
@@ -94,7 +94,75 @@ namespace UserDashboard.Services
 
             return;
         }
+        public async Task SearchProduct(SearchDto searchDto)
+        {
 
+            List<string> keywords = ExtractKeywords(searchDto.searchQuery);
+            
+        }
+        private List<string> ExtractKeywords(string input)
+        {
+            // split by spaces and remove duplicates
+            return input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .Distinct()
+                .ToList();
+        }
+        public async Task<List<SearchResponseDto>> SearchProduct(string input)
+        {
+            
+            List<string> keywords = ExtractKeywords(input);
+            List<Inventory> inventoryData= await InventoryCollection.Find(new BsonDocument()).ToListAsync();
+            Console.WriteLine(inventoryData[0].category);
+
+            // Case-insensitive search in Inventory table
+            var results = inventoryData
+                .Where(item => item.totalQuantity > 0 &&
+                               item.sellers.Any(seller => seller.quantity > 0 ) &&
+                               (keywords.Any(keyword =>
+                                    item.ProductName.Contains(keyword, StringComparison.OrdinalIgnoreCase)) ||
+                                keywords.Any(keyword =>
+                                    item.sellers.Any(seller => seller.tags.Contains(keyword, StringComparer.OrdinalIgnoreCase)))))
+                .SelectMany(item => item.sellers.Where(seller=>seller.quantity>0), (item, seller) => new SearchResponseDto
+                {
+                    id = item.id,
+                    name = item.ProductName,
+                    category = item.category,
+                    description = seller.description,
+                    imagesURL = seller.imagesURL,
+                    Price = seller.quantity > 0 ? seller.Price : int.MaxValue,
+                    SellerId = seller.sellerId
+                })
+                .OrderBy(item => item.Price) // Sort  by price
+                    .ToList();
+
+            Console.WriteLine(results);
+            
+            return results;
+        }
+        public async Task<ProductResponseDto> GetProductByProductNameAndSellerId(string productName, string sellerId)
+        {
+            List<Inventory> inventoryData= await InventoryCollection.Find(new BsonDocument()).ToListAsync();
+
+            // Perform a case-insensitive search in Inventory data
+            var result = inventoryData
+                .Where(item => item.totalQuantity > 0 &&
+                               item.sellers.Any(seller => seller.quantity > 0) &&
+                               item.ProductName.Equals(productName, StringComparison.OrdinalIgnoreCase) &&
+                               item.sellers.Any(seller => seller.sellerId == sellerId))
+                .SelectMany(item => item.sellers.Where(seller=> seller.quantity>0), (item, seller) => new ProductResponseDto()
+                {
+                    Id = item.id,
+                    ProductName = item.ProductName,
+                    Category = item.category,
+                    Description = seller.description,
+                    imagesURL = seller.imagesURL,
+                    Price = seller.Price,
+                    SellerId = seller.sellerId
+                })
+                .FirstOrDefault(); // Return the first match or null if no matches
+
+            return result;
+        }
 
     }
 }

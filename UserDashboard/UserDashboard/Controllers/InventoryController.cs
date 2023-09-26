@@ -41,5 +41,36 @@ public class InventoryController : Controller
         return Ok("Done");
 
     }
+    [HttpPost("SearchProduct")]
+    public async Task<IActionResult> SearchProduct(SearchDto searchDto)
+    {
+       Console.WriteLine(searchDto.searchQuery );
+        var result = await inventoryServices.SearchProduct(searchDto.searchQuery);
+        
+        return Ok(result);
+
+    }
+    [HttpPost]
+    [Route("{productName}/{sellerId}")]
+    public async Task<IActionResult> GetProductByProductNameAndSellerId( string productName, string sellerId)
+    {
+        
+        try
+        {
+            var product = await inventoryServices.GetProductByProductNameAndSellerId(productName, sellerId);
+            if (product != null)
+            {
+                return Ok(product);
+            }
+            else
+            {
+                return NotFound($"Product with name '{productName}' and seller ID '{sellerId}' not found.");
+            }
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
 }
 

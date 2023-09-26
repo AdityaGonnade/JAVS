@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<InventoryDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<InventoryServices>();
-
+builder.Services.AddSingleton<CartServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
