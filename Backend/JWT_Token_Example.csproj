@@ -7,19 +7,25 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Cryptorgaphy" Version="0.0.6" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
+        <PackageReference Include="Microsoft.AspNetCore.Metadata" Version="7.0.11" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0" />
         <PackageReference Include="Microsoft.VisualStudio.Language.Intellisense" Version="17.7.188" />
+        <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
         <PackageReference Include="Npgsql" Version="7.0.6" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="7.0.2" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
+        <PackageReference Include="System.Security.Cryptography.Cng" Version="6.0.0-preview.4.21253.7" />
     </ItemGroup>
 
 

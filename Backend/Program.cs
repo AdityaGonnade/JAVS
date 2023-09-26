@@ -1,10 +1,13 @@
 using System.Text;
 using JWT_Token_Example.Context;
+using JWT_Token_Example.UtilityService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IEmailService,EmailService>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(x =>
@@ -19,7 +22,7 @@ builder.Services.AddAuthentication(x =>
         x.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("veryverysecret...")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TPDNmk5ADponVEiQc5tmRkHhOiAFmkAr")),
             ValidateAudience = false,
             ValidateIssuer = false,
             ClockSkew = TimeSpan.Zero
@@ -46,6 +49,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("JavsConnectionString"));
 });
 var app = builder.Build();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -47,20 +47,21 @@ export class SignupComponent {
     if(this.signUpForm.valid){
 
       //push data into database
-      // console.log(this.signUpForm.value);
+      console.log(this.signUpForm.value);
       this.auth.signUp(this.signUpForm.value)
       .subscribe({
-        next: (res=>{
+        next:(res)=>{
+          console.log("res",res)
           // alert(res.message);
           this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
           this.signUpForm.reset();
           this.router.navigate(['login']);
-        }),
-        error:(err=>{
-          console.log('Hello world' + err);
-          //alert(err.message);
-          // this.toast.error({detail:"ERROR", summary:"visal", duration: 5000});
-        })
+        },
+        error:(err)=>{
+          // console.log('Hello world' + err);
+          alert(err.message);
+          // this.toast.error({detail:"ERROR", summary:"Something wrong", duration: 5000});
+        }
       })
     }
     else{

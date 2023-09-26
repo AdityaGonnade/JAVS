@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/aditya.gonnade/Documents/Project Practice/backend/JWT_Token_Example/JWT_Token_Example/JWT_Token_Example.csproj": {}
+    "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/JWT_Token_Example.csproj": {}
   },
   "projects": {
-    "/Users/aditya.gonnade/Documents/Project Practice/backend/JWT_Token_Example/JWT_Token_Example/JWT_Token_Example.csproj": {
+    "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/JWT_Token_Example.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/aditya.gonnade/Documents/Project Practice/backend/JWT_Token_Example/JWT_Token_Example/JWT_Token_Example.csproj",
+        "projectUniqueName": "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/JWT_Token_Example.csproj",
         "projectName": "JWT_Token_Example",
-        "projectPath": "/Users/aditya.gonnade/Documents/Project Practice/backend/JWT_Token_Example/JWT_Token_Example/JWT_Token_Example.csproj",
+        "projectPath": "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/JWT_Token_Example.csproj",
         "packagesPath": "/Users/aditya.gonnade/.nuget/packages/",
-        "outputPath": "/Users/aditya.gonnade/Documents/Project Practice/backend/JWT_Token_Example/JWT_Token_Example/obj/",
+        "outputPath": "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/aditya.gonnade/.nuget/NuGet/NuGet.Config"
@@ -38,11 +38,19 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Cryptorgaphy": {
+              "target": "Package",
+              "version": "[0.0.6, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[7.0.11, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.AspNetCore.Metadata": {
               "target": "Package",
               "version": "[7.0.11, )"
             },
@@ -60,9 +68,17 @@
               "target": "Package",
               "version": "[7.0.11, )"
             },
+            "Microsoft.Extensions.DependencyModel": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.VisualStudio.Language.Intellisense": {
               "target": "Package",
               "version": "[17.7.188, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
             },
             "Npgsql": {
               "target": "Package",
@@ -76,9 +92,17 @@
               "target": "Package",
               "version": "[6.5.0, )"
             },
+            "System.Diagnostics.DiagnosticSource": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "System.Security.Cryptography.Cng": {
+              "target": "Package",
+              "version": "[6.0.0-preview.4.21253.7, )"
             }
           },
           "imports": [
