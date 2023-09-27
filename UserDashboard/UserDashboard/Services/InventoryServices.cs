@@ -100,6 +100,8 @@ namespace UserDashboard.Services
             List<string> keywords = ExtractKeywords(searchDto.searchQuery);
             
         }
+        
+        //Extracting Keywords from SearchQuery
         private List<string> ExtractKeywords(string input)
         {
             // split by spaces and remove duplicates
@@ -107,6 +109,8 @@ namespace UserDashboard.Services
                 .Distinct()
                 .ToList();
         }
+        
+        //SearchProduct 
         public async Task<List<SearchResponseDto>> SearchProduct(string input)
         {
             
@@ -134,16 +138,15 @@ namespace UserDashboard.Services
                 })
                 .OrderBy(item => item.Price) // Sort  by price
                     .ToList();
-
-            Console.WriteLine(results);
             
+            //Console.WriteLine(results);
             return results;
         }
         public async Task<ProductResponseDto> GetProductByProductNameAndSellerId(string productName, string sellerId)
         {
             List<Inventory> inventoryData= await InventoryCollection.Find(new BsonDocument()).ToListAsync();
 
-            // Perform a case-insensitive search in Inventory data
+            // case-insensitive search in Inventory data
             var result = inventoryData
                 .Where(item => item.totalQuantity > 0 &&
                                item.sellers.Any(seller => seller.quantity > 0) &&

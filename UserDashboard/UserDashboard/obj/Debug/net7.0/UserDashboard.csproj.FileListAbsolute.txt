@@ -246,3 +246,4 @@
 /Users/jatin.kasera/RiderProjects/JAVS/UserDashboard/UserDashboard/bin/Debug/net7.0/ElasticsearchClient.dll
 /Users/jatin.kasera/RiderProjects/JAVS/UserDashboard/UserDashboard/obj/Debug/net7.0/UserDashboard.csproj.Fody.CopyLocal.cache
 /Users/jatin.kasera/RiderProjects/JAVS/UserDashboard/UserDashboard/obj/Debug/net7.0/UserDashboard.csproj.Fody.RuntimeCopyLocal.cache
+/Users/jatin.kasera/RiderProjects/JAVS/UserDashboard/UserDashboard/bin/Debug/net7.0/AWSSDK.S3.dll

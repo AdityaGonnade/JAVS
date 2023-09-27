@@ -7,6 +7,7 @@ using UserDashboard.Models.DTO;
 
 namespace UserDashboard.Controllers;
 
+//Dummy Controller for accessing Inventory Db and its APIs
 [ApiController]
 [Route("[controller]")]
 public class InventoryController : Controller
@@ -18,12 +19,14 @@ public class InventoryController : Controller
         this.inventoryServices = inventoryServices;
     }
 
+    //Fetching all the products
     [HttpGet]
     public async Task<List<Inventory>> GetAll() {
 
         return await inventoryServices.GetAllAsync();       
     }
 
+    //creating DB Manually for testing
     [HttpPost]
     public async Task<IActionResult> CreateDB([FromBody] Inventory inv)
     {
@@ -32,7 +35,8 @@ public class InventoryController : Controller
         return CreatedAtAction(nameof(GetAll), new { id = inv.id}, inv);
 
     }
-
+    
+    //Adding a product to the Inventory DB
     [HttpPut]
     public async Task<IActionResult> AddProduct([FromBody] SellerInvDto SellerINV)
     {
@@ -41,6 +45,8 @@ public class InventoryController : Controller
         return Ok("Done");
 
     }
+    
+    //Searching a product in Inventory DB
     [HttpPost("SearchProduct")]
     public async Task<IActionResult> SearchProduct(SearchDto searchDto)
     {
@@ -50,11 +56,12 @@ public class InventoryController : Controller
         return Ok(result);
 
     }
+    
+    //Return a specific product based on productName and sellerId
     [HttpPost]
     [Route("{productName}/{sellerId}")]
     public async Task<IActionResult> GetProductByProductNameAndSellerId( string productName, string sellerId)
     {
-        
         try
         {
             var product = await inventoryServices.GetProductByProductNameAndSellerId(productName, sellerId);

@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace UserDashboard.Models.DTO;
 
+//DTO for Response structure from GetProduct Request
 public class ProductResponseDto
 {
     

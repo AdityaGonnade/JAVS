@@ -15,10 +15,10 @@ public class CartServices
     }
     public CartServices(IOptions<InventoryDBSettings> inventorySettings)
     {
+        //Creating Mongo Client and Cart Collection
         MongoClient client = new MongoClient(inventorySettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(inventorySettings.Value.DatabaseName);
         CartCollection = database.GetCollection<Cart>(inventorySettings.Value.CartCollectionName);
-
     }
   
     private readonly IMongoCollection<Cart> CartCollection;

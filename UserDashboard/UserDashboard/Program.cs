@@ -2,6 +2,7 @@
 using UserDashboard.Services;
 using UserDashboard.Data;
 using UserDashboard.Models;
+using UserDashboard.Models.Domain;
 using UserDashboard.Services;
 
 
@@ -14,10 +15,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Inventory and Cart Service Injection
 builder.Services.Configure<InventoryDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<InventoryServices>();
 builder.Services.AddSingleton<CartServices>();
+
+//AWS Configuration and Service
+builder.Services.AddScoped<IAWSConfiguration, AWSConfiguration>();
+builder.Services.AddSingleton<S3Services>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

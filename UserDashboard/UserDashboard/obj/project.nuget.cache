@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "zumiov7CRb/Ehc+fqtNDKLf+JqBlZy3jenbk86bimmwsNHYPE4p6heOx5pPucilp2A1KTpch1IisCCo2BjhdIg==",
+  "dgSpecHash": "pLUxTbig79IXcpBzkylvjQ0FV2khKYAFwjdfg4hTJgj4zgjw86sFS0JDOptqz0hj8JVicsJV/uLmvIO5vWjtEA==",
   "success": true,
   "projectFilePath": "/Users/jatin.kasera/RiderProjects/JAVS/UserDashboard/UserDashboard/UserDashboard.csproj",
   "expectedPackageFiles": [
-    "/Users/jatin.kasera/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
+    "/Users/jatin.kasera/.nuget/packages/awssdk.core/3.7.202.12/awssdk.core.3.7.202.12.nupkg.sha512",
+    "/Users/jatin.kasera/.nuget/packages/awssdk.s3/3.7.204/awssdk.s3.3.7.204.nupkg.sha512",
     "/Users/jatin.kasera/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/jatin.kasera/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/jatin.kasera/.nuget/packages/elastic.clients.elasticsearch/8.9.3/elastic.clients.elasticsearch.8.9.3.nupkg.sha512",
