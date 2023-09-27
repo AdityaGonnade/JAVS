@@ -50,8 +50,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("JavsConnectionString"));
 });
 
-builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<CartController>();
+// builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
+// builder.Services.AddSingleton<CartController>();
 
 // builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
 // builder.Services.AddSingleton<CartController>();
