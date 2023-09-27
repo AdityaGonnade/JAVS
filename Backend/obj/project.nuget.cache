@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "0p6/cR4jkXdqaBb4fYjsEfb0PDQ3MT9YAvM1kjRcoQhuTNEF/4MIb0MmQYNtL9HGFC2LhDACBKsp2cBM3DSTBg==",
+  "dgSpecHash": "RdoRa4b4C2yRyWXhQeS0Vv0Db2UN1IB7GpgXj6TW2BxYFLoTZxAy2qJBXpHUCZhuLxmnsFXYLStHvUdKlGFFqQ==",
   "success": true,
   "projectFilePath": "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/JWT_Token_Example.csproj",
   "expectedPackageFiles": [
+    "/Users/aditya.gonnade/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/cryptorgaphy/0.0.6/cryptorgaphy.0.0.6.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/mailkit/3.2.0/mailkit.3.2.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/messagepack/2.5.108/messagepack.2.5.108.nupkg.sha512",
@@ -66,6 +69,10 @@
     "/Users/aditya.gonnade/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/mimekit/3.2.0/mimekit.3.2.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/mongodb.bson/2.21.0/mongodb.bson.2.21.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/mongodb.driver/2.21.0/mongodb.driver.2.21.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/mongodb.driver.core/2.21.0/mongodb.driver.core.2.21.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/mongodb.libmongocrypt/1.8.0/mongodb.libmongocrypt.1.8.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/nerdbank.streams/2.10.66/nerdbank.streams.2.10.66.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/netcore.mailkit/2.1.0/netcore.mailkit.2.1.0.nupkg.sha512",
@@ -73,11 +80,14 @@
     "/Users/aditya.gonnade/.nuget/packages/npgsql/7.0.6/npgsql.7.0.6.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/npgsql.entityframeworkcore.postgresql/7.0.11/npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/portable.bouncycastle/1.9.0/portable.bouncycastle.1.9.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/snappier/1.0.0/snappier.1.0.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/streamjsonrpc/2.16.36/streamjsonrpc.2.16.36.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/system.componentmodel.composition/7.0.0/system.componentmodel.composition.7.0.0.nupkg.sha512",
@@ -105,7 +115,8 @@
     "/Users/aditya.gonnade/.nuget/packages/system.threading.tasks.dataflow/7.0.0/system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512",
-    "/Users/aditya.gonnade/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512"
+    "/Users/aditya.gonnade/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512"
   ],
   "logs": [
     {

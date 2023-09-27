@@ -31,7 +31,8 @@ export class LoginComponent {
       private router: Router,
       private toast: NgToastService,
       private userStore : UserStoreService,
-      private resetService: ResetPasswordService, private elementRef: ElementRef,
+      private resetService: ResetPasswordService, 
+      private elementRef: ElementRef,
       
       ){
 

@@ -58,6 +58,8 @@ public class UserController : ControllerBase
             }
             
             user.Token = JwtController.CreateJwt(user);
+            _authContext.Users.Update(user);
+            await _authContext.SaveChangesAsync();
 
             return Ok(new
             {
