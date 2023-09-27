@@ -151,3 +151,4 @@
 /Users/vishal.mishra/Desktop/UIBackend/BACKEND/JAVS_VENDOR/obj/Debug/net7.0/JAVS_VENDOR.csproj.CopyComplete
 /Users/vishal.mishra/Desktop/UIBackend/BACKEND/JAVS_VENDOR/obj/Debug/net7.0/JAVS_VENDOR.genruntimeconfig.cache
 /Users/vishal.mishra/Desktop/UIBackend/BACKEND/JAVS_VENDOR/obj/Debug/net7.0/ref/JAVS_VENDOR.dll
+/Users/vishal.mishra/Desktop/UIBackend/BACKEND/JAVS_VENDOR/bin/Debug/net7.0/AWSSDK.S3.dll

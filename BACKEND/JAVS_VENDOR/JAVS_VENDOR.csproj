@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Npgsql" Version="7.0.6" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.205" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
     <None Remove="REVIEW\ReviewModels\" />
     <None Remove="REVIEW\REVIEWDataAccess\" />
     <None Remove="Inventory\InventorySearchAccess\" />
+    <None Remove="ImageServices\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ORDERS\" />
@@ -49,5 +51,6 @@
     <Folder Include="REVIEW\ReviewModels\" />
     <Folder Include="REVIEW\REVIEWDataAccess\" />
     <Folder Include="Inventory\InventorySearchAccess\" />
+    <Folder Include="ImageServices\" />
   </ItemGroup>
 </Project>

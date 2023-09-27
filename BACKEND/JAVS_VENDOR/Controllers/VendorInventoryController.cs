@@ -17,6 +17,7 @@ using JAVS_VENDOR.INVENTORY;
 using JAVS_VENDOR.INVENTORY_DOMAIN;
 using JAVS_VENDOR.Inventory.InventoryDeleteDTO;
 using JAVS_VENDOR.Inventory.InventoryUpdateDTO;
+using JAVS_VENDOR.ImageServices;
 
 namespace UserDashboard.Controllers {
     [ApiController]
@@ -24,6 +25,7 @@ namespace UserDashboard.Controllers {
     public class VendorInventoryController : Controller
     {
         private readonly DataAccess dataAccess;
+        
         public VendorInventoryController(DataAccess inventoryServices)
         {
             this.dataAccess = inventoryServices;
@@ -42,19 +44,17 @@ namespace UserDashboard.Controllers {
         }
       
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromBody] Items SellerINV)
+        public async Task<IActionResult> AddProduct([FromBody]Items SellerINV)
         {
             await dataAccess.AddItem(SellerINV);
+           
             return Ok("Done");
         }
-
-
         [HttpPut]
         public async Task<IActionResult> EditProduct([FromBody] EditReqDTO SellerINV)
         {
             await dataAccess.EditItem(SellerINV);
             return Ok("Done");
-           
         }
 
         [HttpDelete]

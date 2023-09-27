@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using JAVS_VENDOR.ORDERS.OrderDataAccess;
 using JAVS_VENDOR.REVIEW.REVIEWDataAccess;
 using JAVS_VENDOR.Inventory.InventorySearchAccess;
+using JAVS_VENDOR.ImageServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -41,6 +43,9 @@ builder.Services.AddSingleton<ReviewDataAccess>();
 
 builder.Services.Configure<SearchAccess>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<SearchAccess>();
+
+builder.Services.AddScoped<IAWSConfiguration, AWSConfiguration>();
+builder.Services.AddSingleton<S3Services>();
 
 var app = builder.Build();
 

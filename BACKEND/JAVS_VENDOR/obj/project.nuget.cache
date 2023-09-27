@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tERTLi2wun3x5RpOOKSmgZ1yP5gCiTeOGdgYoZeqn3NBfyg+Kdf5OYGamvB0qe8VWcej9vFVWy8O3T4L5StL4g==",
+  "dgSpecHash": "XDgdmG4rQLFG+F4mrsP3Vh9gd/XgOobxlwDOMxyR4JdIxSbLQkYHoTRF9uuscEJkwT5dS//a7bwbWchx7kuHpw==",
   "success": true,
   "projectFilePath": "/Users/vishal.mishra/Desktop/UIBackend/BACKEND/JAVS_VENDOR/JAVS_VENDOR.csproj",
   "expectedPackageFiles": [
-    "/Users/vishal.mishra/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
+    "/Users/vishal.mishra/.nuget/packages/awssdk.core/3.7.202.14/awssdk.core.3.7.202.14.nupkg.sha512",
+    "/Users/vishal.mishra/.nuget/packages/awssdk.s3/3.7.205/awssdk.s3.3.7.205.nupkg.sha512",
     "/Users/vishal.mishra/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/vishal.mishra/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/vishal.mishra/.nuget/packages/microsoft.aspnetcore.openapi/7.0.9/microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",
