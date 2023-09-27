@@ -1,5 +1,6 @@
 using System.Text;
 using JWT_Token_Example.Context;
+using JWT_Token_Example.Controllers;
 using JWT_Token_Example.UtilityService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("JavsConnectionString"));
 });
+
+builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<CartController>();
+
+// builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
+// builder.Services.AddSingleton<CartController>();
+
 var app = builder.Build();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 

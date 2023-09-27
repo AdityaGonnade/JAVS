@@ -76,6 +76,10 @@
               "target": "Package",
               "version": "[17.7.188, )"
             },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
             "NETCore.MailKit": {
               "target": "Package",
               "version": "[2.1.0, )"

@@ -285,3 +285,16 @@
 /Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/Configuration.dll
 /Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/Cryptography.dll
 /Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/Microsoft.AspNetCore.Metadata.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/AWSSDK.Core.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/AWSSDK.SecurityToken.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/DnsClient.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/MongoDB.Bson.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/MongoDB.Driver.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/MongoDB.Driver.Core.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/MongoDB.Libmongocrypt.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/SharpCompress.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/Snappier.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/ZstdSharp.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/runtimes/linux/native/libmongocrypt.so
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/runtimes/osx/native/libmongocrypt.dylib
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/runtimes/win/native/mongocrypt.dll
