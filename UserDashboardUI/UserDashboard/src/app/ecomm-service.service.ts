@@ -62,10 +62,10 @@ export class EcommServiceService {
 
 
 
-  onGetProductDummy(seller_id:string){
+  onGetProductDummy(seller_id:string, product_name:string){
     this.individual_pdt_details=null;
     console.log("hi",seller_id);
-    const pdt_url = "https://localhost:7221/ProductFetchingProduct/dummy/"+seller_id;
+    const pdt_url = "https://localhost:7221/ProductFetchingProduct/"+product_name+"/"+seller_id;
     
     this.http.post<any>(
       pdt_url,

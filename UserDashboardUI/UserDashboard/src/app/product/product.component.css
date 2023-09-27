@@ -116,7 +116,7 @@ html, body {
   }
   
   .color-choose input[type="radio"]:checked + label span {
-    /* background-image: url(images/check-icn.svg); */
+    border-color: #64af3d;
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -197,12 +197,8 @@ html, body {
     background-color: #64af3d;
   }
   
-  /* Responsive */
-  @media (max-width: 940px) {
-    .container {
-      flex-direction: column;
-      margin-top: 60px;
-    }
+   /* Responsive */
+   
   
     .left-column,
     .right-column {
@@ -210,16 +206,11 @@ html, body {
     }
   
     .left-column img {
-      width: 300px;
-      right: 0;
-      top: -65px;
-      left: initial;
+      width: 400px;
+      height: 300px;
+      margin-left: 15%;
+      margin-top: 20%;
+      /* left: initial; */
     }
-  }
   
-  @media (max-width: 535px) {
-    .left-column img {
-      width: 220px;
-      top: -85px;
-    }
-  }
+  

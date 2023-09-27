@@ -20,8 +20,8 @@ export class DisplayPdtComponent {
 
   }
 
-  onGetProductDummy(my_product:string){
-    this.my_service.onGetProductDummy(my_product);
+  onGetProductDummy(my_product:string, product_name:string){
+    this.my_service.onGetProductDummy(my_product, product_name);
     console.log("Product is clicked");
     setTimeout( () => {
       this.router.navigate(['/product']);
