@@ -20,6 +20,12 @@ import {
 } from '@abacritt/angularx-social-login';
 import { SignupVendorComponent } from './components/signup-vendor/signup-vendor.component';
 import { CartComponent } from './components/cart/cart.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AdvertisementComponent } from './components/advertisement/advertisement.component';
+import { DisplayPdtComponent } from './components/display-pdt/display-pdt.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProductComponent } from './components/product/product.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 
 @NgModule({
@@ -30,7 +36,13 @@ import { CartComponent } from './components/cart/cart.component';
     DashboardComponent,
     ResetComponent,
     SignupVendorComponent,
-    CartComponent
+    CartComponent,
+    HeaderComponent,
+    AdvertisementComponent,
+    DisplayPdtComponent,
+    FooterComponent,
+    ProductComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
