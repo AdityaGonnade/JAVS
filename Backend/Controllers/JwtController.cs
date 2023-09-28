@@ -16,7 +16,8 @@ public class JwtController
         var identity = new ClaimsIdentity(new Claim[]
         {
             new Claim(ClaimTypes.Role, user.Role),
-            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
+            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new Claim("Guid", user.Id.ToString())
         });
         
         var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);

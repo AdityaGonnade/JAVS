@@ -1,6 +1,12 @@
 using System.Text;
+using JWT_Token_Example.Carts.CartDataAccess;
 using JWT_Token_Example.Context;
 using JWT_Token_Example.Controllers;
+using JWT_Token_Example.ImageServices;
+using JWT_Token_Example.Inventory.InventoryDataAccess;
+using JWT_Token_Example.Inventory.InventorySearchAccess;
+using JWT_Token_Example.Order.OrderDataAccess;
+using JWT_Token_Example.Reviews.ReviewModels;
 using JWT_Token_Example.UtilityService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +61,25 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
 // builder.Services.AddSingleton<CartController>();
+
+builder.Services.Configure<DataAccess>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<DataAccess>();
+
+builder.Services.Configure<OrderDataAccess>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<OrderDataAccess>();
+
+builder.Services.Configure<ReviewDataAccess>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<ReviewDataAccess>();
+
+builder.Services.Configure<SearchAccess>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<SearchAccess>();
+
+builder.Services.Configure<CartDataAccess>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<CartDataAccess>();
+
+builder.Services.AddScoped<IAWSConfiguration, AWSConfiguration>();
+builder.Services.AddSingleton<S3Service>();
+
 
 var app = builder.Build();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

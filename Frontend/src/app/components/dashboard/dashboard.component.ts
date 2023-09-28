@@ -13,6 +13,7 @@ export class DashboardComponent {
   public users: any =[];
 
   public fullName : string = "";
+  public userId : string = "";
   constructor(
     private auth : AuthService,
     private api: ApiService,
@@ -29,6 +30,12 @@ export class DashboardComponent {
     .subscribe(val=>{
       let fullNameFromToken = this.auth.getFullNameFromToken();
       this.fullName = val || fullNameFromToken
+    })
+
+    this.userStore.getUserIdFromStore()
+    .subscribe(val => {
+      let useridfromtoken = this.auth.getUseridFromToken();
+      this.userId = val || useridfromtoken
     })
   }
   

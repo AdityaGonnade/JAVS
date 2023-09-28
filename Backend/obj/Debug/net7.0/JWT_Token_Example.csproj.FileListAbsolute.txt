@@ -298,3 +298,4 @@
 /Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/runtimes/linux/native/libmongocrypt.so
 /Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/runtimes/osx/native/libmongocrypt.dylib
 /Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/runtimes/win/native/mongocrypt.dll
+/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/bin/Debug/net7.0/AWSSDK.S3.dll
