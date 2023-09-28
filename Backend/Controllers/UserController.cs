@@ -23,12 +23,14 @@ public class UserController : ControllerBase
     private readonly AppDbContext _authContext;
     private readonly IConfiguration _configuration;
     private readonly IEmailService _emailService;
+    private readonly INotification _notification;
 
-    public UserController(AppDbContext appDbContext, IConfiguration configuration, IEmailService emailService)
+    public UserController(AppDbContext appDbContext, IConfiguration configuration, IEmailService emailService, INotification notification)
     {
         _authContext = appDbContext;
         _configuration = configuration;
         _emailService = emailService;
+        _notification = notification;
     }
     [AllowAnonymous]
     [HttpPost("authenticate")]
@@ -231,4 +233,60 @@ public class UserController : ControllerBase
         });
     }
 
+    [HttpPost("email-notification/{id}")]
+    public async Task<IActionResult> SendNotification(string id)
+    {
+        Guid newid;
+        Guid.TryParse(id, out newid);
+        var user = await _authContext.Users.FirstOrDefaultAsync(a => a.Id == newid);
+        var email = user.Email;
+
+        string orderNumber = "123";
+        var address = "Ram Ram";
+        
+        string from = _configuration["EmailSettings:From"];
+        var emailModel = new EmailModel(email, "Order Confirmation", UserNotificationBody.UserNotificationMail(orderNumber,address));
+        _notification.SendEmailAsync(emailModel);
+        _authContext.Entry(user).State = EntityState.Modified;
+        await _authContext.SaveChangesAsync();
+        return Ok(new
+        {
+            StatusCode = 200,
+            Message = "Email Sent!"
+        });
+    }
+    
+    // public async Task<IActionResult> SendNotificationB(string id,string address,string orderNumber)
+    // {
+    //     Guid newid;
+    //     Guid.TryParse(id, out newid);
+    //     var user = await _authContext.Users.FirstOrDefaultAsync(a => a.Id == newid);
+    //     var email = user.Email;
+    //     // if (user is null)
+    //     // {
+    //     //     return NotFound(new
+    //     //     {
+    //     //         StatusCode = 404,
+    //     //         Message = "Email Doesn't Exist"
+    //     //     });
+    //     // }
+    //     
+    //     //fetch oreder form ordere table
+    //     
+    //     
+    //     // var tokenBytes = RandomNumberGenerator.GetBytes(64);
+    //     // var emailToken = Convert.ToBase64String(tokenBytes);
+    //     // user.ResetPasswordToken = emailToken;
+    //     // user.ResetPasswordExpiry = DateTime.Now.AddMinutes(15);
+    //     string from = _configuration["EmailSettings:From"];
+    //     var emailModel = new EmailModel(email, "Order Confirmation", UserNotificationBody.UserNotificationMail(orderNumber,address));
+    //     _notification.SendEmailAsync(emailModel);
+    //     _authContext.Entry(user).State = EntityState.Modified;
+    //     await _authContext.SaveChangesAsync();
+    //     return Ok(new
+    //     {
+    //         StatusCode = 200,
+    //         Message = "Email Sent!"
+    //     });
+    // }
 }

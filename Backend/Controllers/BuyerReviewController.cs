@@ -15,25 +15,29 @@ public class BuyerReviewController: ControllerBase
         dataAccess = rev;
     }
 
-    [HttpGet("getallreviews")]
+    [HttpGet]
+
     public async Task<List<Review>> GetAll()
     {
         return await dataAccess.GetAllReviews();
     }
 
-    [HttpGet("getreview/{productname}")]
+    [HttpGet("{productname}")]
+
     public async Task<ProductReview> GetProductReview( string productname)
     {
         return await dataAccess.GetReviewForProduct(productname);
     }
 
-    [HttpPost("addreview")]
+    [HttpPost]
+
     public async Task<Review> AddReview([FromBody] AddReviewDTO obj)
     {
         return await dataAccess.AddReview(obj);
     }
 
-    [HttpDelete("deletereview")]
+    [HttpDelete]
+
     public async Task<IActionResult> DeleteReview([FromBody] DeleteReviewDTO obj)
     {
         await dataAccess.Deletereview(obj);
@@ -41,7 +45,8 @@ public class BuyerReviewController: ControllerBase
     }
 
 
-    [HttpPut("editreview")]
+    [HttpPut]
+
     public async Task<Review> EditReview([FromBody] EditReviewDTO obj)
     {
         return await dataAccess.EditReview(obj);

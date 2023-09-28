@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IEmailService,EmailService>();
+builder.Services.AddTransient<INotification, Notification>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(x =>

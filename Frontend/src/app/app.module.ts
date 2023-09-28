@@ -26,6 +26,7 @@ import { DisplayPdtComponent } from './components/display-pdt/display-pdt.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductComponent } from './components/product/product.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { SearchResultComponent } from './components/search-result/search-result.
     DisplayPdtComponent,
     FooterComponent,
     ProductComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

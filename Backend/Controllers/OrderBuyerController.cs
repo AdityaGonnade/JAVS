@@ -27,7 +27,7 @@ public class OrderBuyerController : ControllerBase
         return await dataAccess.GetOrdersPlacedBuyer(id);
     }
 
-    [HttpPost]
+    [HttpPost("placeorder/{obj}")]
 
     public async Task<IActionResult> PlaceOrder(OrdersDTO obj)
     {

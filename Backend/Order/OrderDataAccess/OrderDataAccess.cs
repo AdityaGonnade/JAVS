@@ -1,4 +1,5 @@
 using JWT_Token_Example.Carts.CartDataAccess;
+using JWT_Token_Example.Controllers;
 using JWT_Token_Example.Inventory.InventoryDataAccess;
 using JWT_Token_Example.Inventory.InventoryEditDTO;
 using JWT_Token_Example.Inventory.InventoryModels;
@@ -23,10 +24,12 @@ public class OrderDataAccess
 
         private CartDataAccess cartAccess;
         private DataAccess dataAccess;
+        private readonly UserController _userController;
 
         
-        public OrderDataAccess()
+        public OrderDataAccess(UserController userController)
         {
+            _userController = userController;
             var client = new MongoClient(ConnectionString);
             var db = client.GetDatabase(DatabaseName);
            ordersCollection = db.GetCollection<Orders>(OrdersDB);
@@ -111,7 +114,17 @@ public class OrderDataAccess
             orderobj.TotalAmount = obj.TotalAmount;
             orderobj.TotalQuantity = obj.TotalQuantity;
           
+            
             await ordersCollection.InsertOneAsync(orderobj);
+
+            var filter = Builders<Orders>.Filter.Eq("BuyerId", obj.BuyerId);
+            var reqord = await ordersCollection.Find(filter).ToListAsync();
+            var reqOrderId = reqord.First();
+            
+            
+            //Send Notification to User
+            // _userController.SendNotificationB(obj.BuyerId,obj.BillingAddressId,reqOrderId.id);
+            _userController.SendNotification(obj.BuyerId);
             return orderobj;
 
         }
