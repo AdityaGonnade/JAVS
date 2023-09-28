@@ -60,5 +60,10 @@ export class AuthService {
     return this.userPayload.role;
    }
 
+   getUseridFromToken(){
+    if(this.userPayload)
+    return this.userPayload.guid;
+   }
+
 
 }

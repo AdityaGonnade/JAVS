@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RdoRa4b4C2yRyWXhQeS0Vv0Db2UN1IB7GpgXj6TW2BxYFLoTZxAy2qJBXpHUCZhuLxmnsFXYLStHvUdKlGFFqQ==",
+  "dgSpecHash": "rP9Xt1nCOxSvBCgBry7x61mP5vcGsDkp9dRQZWH/9/K/lXjjil6+3fvTAhZybiXwjS6pHbD4AI5G8aneDAH38Q==",
   "success": true,
   "projectFilePath": "/Users/aditya.gonnade/Documents/GitHub/JAVS/Backend/JWT_Token_Example.csproj",
   "expectedPackageFiles": [
-    "/Users/aditya.gonnade/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/awssdk.core/3.7.202.16/awssdk.core.3.7.202.16.nupkg.sha512",
+    "/Users/aditya.gonnade/.nuget/packages/awssdk.s3/3.7.205.2/awssdk.s3.3.7.205.2.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/aditya.gonnade/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",

@@ -63,6 +63,7 @@ export class LoginComponent {
             let tokenPayload = this.auth.decodeToken();
             this.userStore.setFullNameForStore(tokenPayload.name);
             this.userStore.setRoleForStore(tokenPayload.role);
+            this.userStore.setUserIdFromStore(tokenPayload.id);
             this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
             if(res.role == "User"){
               this.loginForm.reset();
