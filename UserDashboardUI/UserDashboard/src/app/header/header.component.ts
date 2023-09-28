@@ -22,7 +22,7 @@ export class HeaderComponent {
   };
 
   constructor(private my_service:EcommServiceService, private router: Router){
-
+    
   }
 
   onSubmit(){

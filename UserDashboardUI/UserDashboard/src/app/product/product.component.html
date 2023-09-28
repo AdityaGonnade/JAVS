@@ -7,6 +7,8 @@
       <img data-image="blue" src="images/blue.png" alt="">
       <img data-image="red" class="active" src="images/red.png" alt=""> -->
       <img class="active" src="{{img_loc}}" alt="">
+
+      <h6 class="emergency">Hurry up! only few left in the stock</h6>
     </div>
    
    
@@ -44,8 +46,12 @@
    
         </div>
    
+        <div class="rate">
+            <h1>{{product_rating}} Star</h1>
+          </div>
+
         <!-- Cable Configuration -->
-        <div class="cable-config">
+        <!-- <div class="cable-config">
           <span>Cable configuration</span>
    
           <div class="cable-choose">
@@ -55,13 +61,31 @@
           </div>
    
           <a href="#">How to configurate your headphones</a>
-        </div>
+        </div> -->
       </div>
    
       <!-- Product Pricing -->
       <div class="product-price">
-        <span>148$</span>
-        <a href="#" class="cart-btn">Add to cart</a>
+        <span>Rs.{{individual_pdt.price}} Only</span>
+        <button class="cart-btn" (click)="updateCart()">Add to cart</button>
       </div>
+
+      
+
+      <hr>
+      <h2 class="review">All Reviews </h2>
+      <div *ngFor="let items of product_review_list"  class="row float-container">
+    
+                <div class="float-child" >
+                    <h4>{{items.Rating}} Star</h4>
+                    <h5>{{items.Description}}</h5>
+                    <!-- <p> {{Product_details[0].description}}</p> -->
+                </div>
+          
+          
+       
+      </div>
+      
     </div>
+    
   </main>

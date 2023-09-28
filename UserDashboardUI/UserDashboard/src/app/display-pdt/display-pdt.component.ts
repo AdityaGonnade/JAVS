@@ -11,7 +11,7 @@ export class DisplayPdtComponent {
    img_link:string[]=[]; 
 
   constructor(private my_service:EcommServiceService, private router: Router){
-    this.img_link = my_service.temperoary;
+    this.img_link = my_service.dummy_imgs;
   }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class DisplayPdtComponent {
     setTimeout( () => {
       this.router.navigate(['/product']);
       
-    }, 800 );
+    }, 2000 );
 
   }
 

@@ -196,8 +196,7 @@ html, body {
   .cart-btn:hover {
     background-color: #64af3d;
   }
-  
-   /* Responsive */
+
    
   
     .left-column,
@@ -213,4 +212,31 @@ html, body {
       /* left: initial; */
     }
   
-  
+    .float-container {
+        background-color: #E1E8EE;
+        padding: 20px;
+        border-style: groove;
+        border-bottom: #323232;
+    }
+    
+    .float-child {
+        width: 50%;
+        float: left;
+        
+    }  
+
+    .review{
+        margin-top: 20%;
+        
+        color:green;
+    }
+
+    .emergency{
+        width:fit-content;
+        border-radius: 15%;
+        background-color: black;
+        margin-top: 80%;
+        margin-left: 25%;
+        color: tomato;
+    }
+

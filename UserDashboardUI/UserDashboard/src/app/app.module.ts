@@ -15,6 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductComponent } from './product/product.component';
+import { VendorDashboardComponent } from './vendor-dashboard/vendor-dashboard.component';
+import { VendorProductUploadComponent } from './vendor-product-upload/vendor-product-upload.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -28,6 +31,9 @@ import { ProductComponent } from './product/product.component';
     DashboardComponent,
     FooterComponent,
     ProductComponent,
+    VendorDashboardComponent,
+    VendorProductUploadComponent,
+    CartComponent,
     
   ],
   imports: [
