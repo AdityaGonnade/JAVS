@@ -5,9 +5,10 @@ namespace JWT_Token_Example.Controllers;
 
 public class ImageController : ControllerBase
 {
+    // GET: /<controller>/
     private S3Service? S3service;
     private readonly IAWSConfiguration appConfiguration;
-    
+
     public ImageController(IAWSConfiguration appConfig)
     {
 
@@ -60,6 +61,5 @@ public class ImageController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
 
 }

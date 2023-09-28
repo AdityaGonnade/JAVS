@@ -9,6 +9,7 @@ import { SignupVendorComponent } from './components/signup-vendor/signup-vendor.
 import { CartComponent } from './components/cart/cart.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ProductComponent } from './components/product/product.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'signupvendor',component: SignupVendorComponent},
   {path:'cart',component: CartComponent},
   { path: 'search-result', component: SearchResultComponent },
-  {path:'product', component:ProductComponent}
+  {path:'product', component:ProductComponent},
+  {path:'order',component: OrderComponent}
 ];
 
 @NgModule({

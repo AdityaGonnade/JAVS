@@ -11,17 +11,14 @@ import { EcommServiceService } from 'src/app/services/ecomm-service.service';
 export class HeaderComponent {
 
   searchForm!: FormGroup;
-
+ 
   ngOnInit() {
     this.searchForm = new FormGroup({
-      'searchQuery':new FormControl(null,Validators.required),
+      'searchQuery':new FormControl(null, Validators.required),
     });
   };
 
-
-  constructor(
-    private my_service:EcommServiceService, 
-    private router: Router) {
+  constructor(private my_service:EcommServiceService, private router: Router){
     
   }
 
@@ -33,7 +30,11 @@ export class HeaderComponent {
     }, 800 );
   }
 
-  onCart(){
-    this.router.navigate(['cart']);
+  openCart(){
+    this.my_service.openCart();
+    setTimeout( () => {
+      this.router.navigate(['/cart']);
+      
+    }, 800 );
   }
 }
