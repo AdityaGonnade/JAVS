@@ -22,19 +22,18 @@ public class OrderDataAccess
 
         //private readonly IMongoCollection<Product> productsCollection;
 
-        private CartDataAccess cartAccess;
-        private DataAccess dataAccess;
-        private readonly UserController _userController;
 
+        private DataAccess dataAccess;
+        private CartDataAccess cartData;
         
-        public OrderDataAccess(UserController userController)
+        public OrderDataAccess()
         {
-            _userController = userController;
+            
             var client = new MongoClient(ConnectionString);
             var db = client.GetDatabase(DatabaseName);
            ordersCollection = db.GetCollection<Orders>(OrdersDB);
             dataAccess = new DataAccess();
-            cartAccess = new CartDataAccess();
+            cartData = new CartDataAccess();
         }
 
 
@@ -42,10 +41,12 @@ public class OrderDataAccess
         public async Task<Orders> PlaceOrderBuyer(OrdersDTO obj)
         {
 
-            
-           
+
+
+            Guid temp = Guid.NewGuid();
             var orderobj = new Orders()
             {
+                id = temp.ToString(),
                 orders=new List<OrderItems>(),
                 BillingAddressId = obj.BillingAddressId,
                 BuyerId = obj.BuyerId
@@ -70,9 +71,9 @@ public class OrderDataAccess
                         break;
                     }
                 }
+                //if (flag)
+                //    return null;
 
-                if (flag)
-                    return null;
                 if (!flag)
                 {
                     items.Price = await GetPrice(items.ProductName, items.SellerId);
@@ -89,7 +90,7 @@ public class OrderDataAccess
                             Price = items.Price,
                             itemquantity = 1,
                             dateOfArrival = DateTime.Today,
-                            OrderStatus = items.OrderStatus
+                            OrderStatus = "Order Placed"
                         };
 
                         orderobj.orders.Add(item);
@@ -104,27 +105,21 @@ public class OrderDataAccess
                     };
 
                     await UpdateDBOrderPlaced(request);
-                    
+
+        
 
                 }
-
                 
             }
-            await cartAccess.DeleteCart(obj.BuyerId);
             orderobj.TotalAmount = obj.TotalAmount;
             orderobj.TotalQuantity = obj.TotalQuantity;
-          
-            
-            await ordersCollection.InsertOneAsync(orderobj);
 
-            var filter = Builders<Orders>.Filter.Eq("BuyerId", obj.BuyerId);
-            var reqord = await ordersCollection.Find(filter).ToListAsync();
-            var reqOrderId = reqord.First();
+
+            await cartData.DeleteCart(obj.BuyerId);
+            await ordersCollection.InsertOneAsync(orderobj);
             
             
-            //Send Notification to User
-            // _userController.SendNotificationB(obj.BuyerId,obj.BillingAddressId,reqOrderId.id);
-            _userController.SendNotification(obj.BuyerId);
+            
             return orderobj;
 
         }
@@ -564,10 +559,10 @@ public class OrderDataAccess
 
                         sellerList.ImageUrl = item.ImageUrl;
                         sellerList.Category = products.Category;
-                        sellerList.Discount = item.Discount;
+                        sellerList.Discount =  item.Discount ;
                         sellerList.Price = item.Price;
                         sellerList.DateUploaded = item.DateUploaded;
-                        sellerList.Descriptions = item.Descriptions;
+                        sellerList.Descriptions =  item.Descriptions ;
                         sellerList.Tags = item.Tags;
                         sellerList.Status = x <= 0 ? "unavailable" : "available";
 
@@ -585,7 +580,7 @@ public class OrderDataAccess
 
 
                 total_quantity += products.Quantity;
-                total_quantity++;
+                total_quantity ++;
 
 
 
@@ -606,8 +601,7 @@ public class OrderDataAccess
 
                 var update_status = Builders<Product>.Update.Set("Status", "available");
 
-                var combinedUpdate =
-                    Builders<Product>.Update.Combine(update_seller_list, update_quantity, update_status);
+                var combinedUpdate = Builders<Product>.Update.Combine(update_seller_list, update_quantity, update_status);
                 await dataAccess.productsCollection.UpdateOneAsync(prodFilter, combinedUpdate);
             }
 
@@ -615,9 +609,15 @@ public class OrderDataAccess
             {
                 var update_status = Builders<Product>.Update.Set("Status", "unavailable");
 
-                var combinedUpdate =
-                    Builders<Product>.Update.Combine(update_seller_list, update_quantity, update_status);
+                var combinedUpdate = Builders<Product>.Update.Combine(update_seller_list, update_quantity, update_status);
                 await dataAccess.productsCollection.UpdateOneAsync(prodFilter, combinedUpdate);
             }
+
+
+
+
+
+
         }
+
 }

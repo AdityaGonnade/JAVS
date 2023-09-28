@@ -65,13 +65,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.Configure<DataAccess>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<DataAccess>();
-
+//
 builder.Services.Configure<OrderDataAccess>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<OrderDataAccess>();
-
+//
 builder.Services.Configure<ReviewDataAccess>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<ReviewDataAccess>();
-
+//
 builder.Services.Configure<SearchAccess>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<SearchAccess>();
 

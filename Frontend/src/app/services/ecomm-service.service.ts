@@ -36,7 +36,7 @@ export class EcommServiceService {
     this.recieved_product=[];
     this.http.post< {[key:string] :searchPost}>(
       
-      'https://localhost:7221/ProductFetchingProduct/SearchProduct', searchForm.value,
+      'https://localhost:7031/ProductFetchingProduct/SearchProduct', searchForm.value,
     ).pipe( map(responseData => {
       const postArray:searchPost[] =[];
       for (const key in responseData){
@@ -73,7 +73,7 @@ export class EcommServiceService {
     this.product_rating=0;
 
     console.log("hi",seller_id);
-    const pdt_url = "https://localhost:7221/ProductFetchingProduct/"+product_name+"/"+seller_id;
+    const pdt_url = "https://localhost:7031/ProductFetchingProduct/"+product_name+"/"+seller_id;
     
     this.http.post<any>(
       pdt_url,
@@ -97,7 +97,7 @@ export class EcommServiceService {
     });
 
   
-      const review_url = "https://localhost:7221/BuyerReview/"+product_name;  
+      const review_url = "https://localhost:7031/BuyerReview/"+product_name;  
     this.http.get<any>(
       review_url,
       
@@ -133,7 +133,7 @@ export class EcommServiceService {
     
     console.log("h1111");
 
-    const pdt_url = "https://localhost:7221/BuyerCart/mycart"
+    const pdt_url = "https://localhost:7031/BuyerCart/mycart"
 
     console.log("whjcehj"+this.individual_pdt_details.sellerId)
     var cart={
@@ -160,7 +160,7 @@ export class EcommServiceService {
 
   openCart(){
     let buyerID=3;
-    const pdt_url = "https://localhost:7221/BuyerCart/id?id="+buyerID;
+    const pdt_url = "https://localhost:7031/BuyerCart/id?id="+buyerID;
     this.http.get<any>(
       pdt_url,
     )
@@ -205,7 +205,7 @@ export class EcommServiceService {
     }
     console.log("My orders");
     console.log(my_orders);
-    const pdt_url = "https://localhost:7221/OrderBuyer";
+    const pdt_url = "https://localhost:7031/OrderBuyer";
 
     this.http.post<any>(
       pdt_url,
