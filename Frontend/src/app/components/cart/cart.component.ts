@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { EcommServiceService } from 'src/app/services/ecomm-service.service';
 import { cartPost } from '../header/Cart.module';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +16,12 @@ export class CartComponent {
   TotalQuantity=0;
   mycode:string="";
   Address:string="";
-  constructor(private my_service:EcommServiceService, private router: Router){
+  idw: any ="";
+  constructor(private my_service:EcommServiceService, 
+    private router: Router,
+    private noti : NotificationService) {
     this.mycart= new cartPost();
+    
   }
   
   ngOnInit(){
@@ -57,6 +62,9 @@ export class CartComponent {
     console.log(this.TotalCost, this.TotalQuantity);
     this.my_service.placeOrder(this.TotalCost,this.TotalQuantity, this.Address);
     this.router.navigate(['/order']);
+    this.idw = localStorage.getItem('userid');
+    this.noti.sendEmailToUser(this.idw);
+    
   }
 
 }
