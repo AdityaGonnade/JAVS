@@ -43,38 +43,86 @@ public class SearchAccess
                 .Distinct()
                 .ToList();
         }
+        // public async Task<List<InventorySearchResponseDTO>> SearchProduct(string input)
+        // {
+        //
+        //     List<string> keywords = ExtractKeywords(input);
+        //     List<Product> inventoryData = await productsCollection.Find(new BsonDocument()).ToListAsync();
+        //     Console.WriteLine(inventoryData[0].Category);
+        //
+        //     // Case-insensitive search in Inventory table
+        //     var results = inventoryData
+        //         .Where(item => item.Quantity > 0 &&
+        //                        item.items.Any(seller => seller.quantity > 0) &&
+        //                        (keywords.Any(keyword =>
+        //                             item.ProductName.Contains(keyword, StringComparison.OrdinalIgnoreCase)) ||
+        //                         keywords.Any(keyword =>
+        //                             item.items.Any(seller => seller.Tags.Contains(keyword, StringComparer.OrdinalIgnoreCase)))))
+        //         .SelectMany(item => item.items.Where(seller => seller.quantity > 0), (item, seller) => new InventorySearchResponseDTO
+        //         {
+        //             id = item.id,
+        //             name = item.ProductName,
+        //             category = item.Category,
+        //             description = seller.Descriptions,
+        //             imagesURL = seller.ImageUrl,
+        //             Price = seller.quantity > 0 ? seller.Price : int.MaxValue,
+        //             SellerId = seller.SellerId
+        //         })
+        //         .OrderBy(item => item.Price) // Sort  by price
+        //             .ToList();
+        //
+        //     Console.WriteLine(results);
+        //
+        //     return results;
+        // }
+        
         public async Task<List<InventorySearchResponseDTO>> SearchProduct(string input)
+{
+    List<string> keywords = ExtractKeywords(input);
+    List<Product> inventoryData = await productsCollection.Find(new BsonDocument()).ToListAsync();
+    Console.WriteLine(inventoryData[0].Category);
+    // Separate products that match ProductName exactly
+    var exactMatchResults = inventoryData
+        .Where(item => item.Quantity > 0 &&
+                       item.items.Any(seller => seller.quantity > 0) &&
+                       keywords.Any(keyword =>
+                            item.ProductName.Contains(keyword, StringComparison.OrdinalIgnoreCase)))
+        .SelectMany(item => item.items.Where(seller => seller.quantity > 0), (item, seller) => new InventorySearchResponseDTO
         {
-
-            List<string> keywords = ExtractKeywords(input);
-            List<Product> inventoryData = await productsCollection.Find(new BsonDocument()).ToListAsync();
-            Console.WriteLine(inventoryData[0].Category);
-
-            // Case-insensitive search in Inventory table
-            var results = inventoryData
-                .Where(item => item.Quantity > 0 &&
-                               item.items.Any(seller => seller.quantity > 0) &&
-                               (keywords.Any(keyword =>
-                                    item.ProductName.Contains(keyword, StringComparison.OrdinalIgnoreCase)) ||
-                                keywords.Any(keyword =>
-                                    item.items.Any(seller => seller.Tags.Contains(keyword, StringComparer.OrdinalIgnoreCase)))))
-                .SelectMany(item => item.items.Where(seller => seller.quantity > 0), (item, seller) => new InventorySearchResponseDTO
-                {
-                    id = item.id,
-                    name = item.ProductName,
-                    category = item.Category,
-                    description = seller.Descriptions,
-                    imagesURL = seller.ImageUrl,
-                    Price = seller.quantity > 0 ? seller.Price : int.MaxValue,
-                    SellerId = seller.SellerId
-                })
-                .OrderBy(item => item.Price) // Sort  by price
-                    .ToList();
-
-            Console.WriteLine(results);
-
-            return results;
-        }
+            id = item.id,
+            name = item.ProductName,
+            category = item.Category,
+            description = seller.Descriptions,
+            imagesURL = seller.ImageUrl,
+            Price = seller.quantity > 0 ? seller.Price : int.MaxValue,
+            SellerId = seller.SellerId
+        });
+    // Products that match keywords in seller's tags
+    var tagMatchResults = inventoryData
+        .Where(item => item.Quantity > 0 &&
+                       item.items.Any(seller => seller.quantity > 0) &&
+                       keywords.Any(keyword =>
+                            item.items.Any(seller => seller.Tags.Contains(keyword, StringComparer.OrdinalIgnoreCase))))
+        .SelectMany(item => item.items.Where(seller => seller.quantity > 0), (item, seller) => new InventorySearchResponseDTO
+        {
+            id = item.id,
+            name = item.ProductName,
+            category = item.Category,
+            description = seller.Descriptions,
+            imagesURL = seller.ImageUrl,
+            Price = seller.quantity > 0 ? seller.Price : int.MaxValue,
+            SellerId = seller.SellerId
+        });
+    // Concatenate the results, giving priority to exact matches
+    var concatenatedResults = exactMatchResults.Concat(tagMatchResults);
+    // Group by a unique key (e.g., id) and select the first item from each group
+    var results = concatenatedResults
+        .GroupBy(item => item.SellerId)
+        .Select(group => group.First())
+        .ToList();
+    Console.WriteLine(results);
+    return results;
+}
         public async Task<InventoryProductResponseDTO> GetProductByProductNameAndSellerId(string productName, string sellerId)
         {
             List<Product> inventoryData = await productsCollection.Find(new BsonDocument()).ToListAsync();

@@ -242,7 +242,7 @@ public class UserController : ControllerBase
         var email = user.Email;
 
         string orderNumber = "123";
-        var address = "Ram Ram";
+        var address = "Swimlane Hyderabad";
         
         string from = _configuration["EmailSettings:From"];
         var emailModel = new EmailModel(email, "Order Confirmation", UserNotificationBody.UserNotificationMail(orderNumber,address));

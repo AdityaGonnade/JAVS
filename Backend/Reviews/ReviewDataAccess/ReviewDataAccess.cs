@@ -63,7 +63,8 @@ public class ReviewDataAccess
                 {
                     BuyerId = rev.BuyerId,
                     Description = rev.Description,
-                    ImageURL = rev.ImageURL
+                    ImageURL = rev.ImageURL,
+                    Rating = rev.rating,
                 };
 
                 avg += rev.rating;

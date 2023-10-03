@@ -61,9 +61,13 @@ export class LoginComponent {
             // alert(res.message);
             this.auth.storeToken(res.token);
             let tokenPayload = this.auth.decodeToken();
-            this.userStore.setFullNameForStore(tokenPayload.name);
+            this.userStore.setFullNameForStore(tokenPayload.unique_name);
+            // console.log(tokenPayload);
+            // console.log(tokenPayload.unique_name);
             this.userStore.setRoleForStore(tokenPayload.role);
-            this.userStore.setUserIdFromStore(tokenPayload.id);
+            // console.log(tokenPayload.role);
+            this.userStore.setUserIdFromStore(tokenPayload.Guid.toString());
+            // console.log(tokenPayload.Guid);
             this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
             if(res.role == "User"){
               this.loginForm.reset();

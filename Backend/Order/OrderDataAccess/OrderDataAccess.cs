@@ -6,7 +6,21 @@ using JWT_Token_Example.Inventory.InventoryModels;
 using JWT_Token_Example.Order.OrderModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
-
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
+using JWT_Token_Example.Context;
+using JWT_Token_Example.Helpers;
+using JWT_Token_Example.Models;
+using JWT_Token_Example.Models.DTO;
+using JWT_Token_Example.UtilityService;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 namespace JWT_Token_Example.Order.OrderDataAccess;
 
 public class OrderDataAccess
@@ -26,9 +40,10 @@ public class OrderDataAccess
         private DataAccess dataAccess;
         private CartDataAccess cartData;
         
+        
         public OrderDataAccess()
         {
-            
+           
             var client = new MongoClient(ConnectionString);
             var db = client.GetDatabase(DatabaseName);
            ordersCollection = db.GetCollection<Orders>(OrdersDB);
@@ -114,7 +129,7 @@ public class OrderDataAccess
             orderobj.TotalAmount = obj.TotalAmount;
             orderobj.TotalQuantity = obj.TotalQuantity;
 
-
+         
             await cartData.DeleteCart(obj.BuyerId);
             await ordersCollection.InsertOneAsync(orderobj);
             
@@ -123,6 +138,30 @@ public class OrderDataAccess
             return orderobj;
 
         }
+        //
+        // public async Task SendNotifi(string id, string email, string address)
+        // {
+        //     
+        //     Guid newid;
+        //     Guid.TryParse(id, out newid);
+        //     var user = await _authContext.Users.FirstOrDefaultAsync(a => a.Id == newid);
+        //     var email = user.Email;
+        //
+        //     string orderNumber = "123";
+        //     var address = "";
+        //
+        //     string from = _configuration["EmailSettings:From"];
+        //     var emailModel = new EmailModel(email, "Order Confirmation", UserNotificationBody.UserNotificationMail(orderNumber,address));
+        //     _notification.SendEmailAsync(emailModel);
+        //     _authContext.Entry(user).State = EntityState.Modified;
+        //     await _authContext.SaveChangesAsync();
+        //     return Ok(new
+        //     {
+        //         StatusCode = 200,
+        //         Message = "Email Sent!"
+        //     });
+        // }
+        //
 
 
         public async Task<int> GetPrice(string pname,string vendorid)
