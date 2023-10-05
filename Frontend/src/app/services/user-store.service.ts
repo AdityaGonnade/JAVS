@@ -17,6 +17,7 @@ export class UserStoreService {
     }
 
     public setRoleForStore(role: string){
+      localStorage.setItem('role',role);
       this.role$.next(role);
     }
 

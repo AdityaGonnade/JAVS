@@ -10,19 +10,26 @@ using JWT_Token_Example.Reviews.ReviewModels;
 using JWT_Token_Example.UtilityService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IEmailService,EmailService>();
 builder.Services.AddTransient<INotification, Notification>();
+builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IResetPassword, ResetPassword>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(x =>
     {
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
+    }).AddCookie(x =>
+        {
+            x.Cookie.Name = "token";
+        }
+        )
     .AddJwtBearer(x =>
     {
         x.RequireHttpsMetadata = false;
@@ -35,6 +42,14 @@ builder.Services.AddAuthentication(x =>
             ValidateIssuer = false,
             ClockSkew = TimeSpan.Zero
         };
+        x.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["token"];
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddControllers();
@@ -45,9 +60,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyPolicy", builder =>
     {
-        builder.AllowAnyOrigin()
+        builder.WithOrigins("http://localhost:4200","https://localhost:4200")
             .AllowAnyMethod()
-            .AllowAnyHeader();
+            .AllowAnyHeader()
+            .AllowCredentials();
     });
 });
 

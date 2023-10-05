@@ -23,6 +23,10 @@
                                     <input formControlName="password" [type]="type" placeholder="Password">
                                     <span class="fa {{ eyeIcon }}" (click)="hideShowPassword()"></span>
                                 </div>
+                                <app-password-strength
+                                [passwordToCheck]="loginForm.value.password"
+                                (passwordStrength)="passwordValid($event)"
+                                ></app-password-strength>
                             </div>
                             <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" 
                                 class="text-danger">*Password is required</small>

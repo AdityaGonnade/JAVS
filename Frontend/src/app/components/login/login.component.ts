@@ -1,12 +1,14 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { CookieService } from 'ngx-cookie-service';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 import { ResetPasswordService } from 'src/app/services/reset-password.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
-
+import { PasswordStrengthComponent } from '../password-strength/password-strength.component';
 
 
 @Component({
@@ -16,10 +18,12 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 })
 export class LoginComponent {
 
+    cookieHeader : string | null = null;
     type: string = "password";
     isText: boolean = false;
     eyeIcon: string = "fa-eye-slash";
     loginForm!: FormGroup;
+    passwordIsValid = false;
     public resetPasswordEmail!:string;
     public isValidEmail! : boolean; 
 
@@ -33,7 +37,7 @@ export class LoginComponent {
       private userStore : UserStoreService,
       private resetService: ResetPasswordService, 
       private elementRef: ElementRef,
-      
+      private cookieService: CookieService
       ){
 
     }
@@ -43,6 +47,12 @@ export class LoginComponent {
         username: ['',Validators.required],
         password: ['',Validators.required]
       })
+
+
+    }
+
+    passwordValid(event : any) {
+      this.passwordIsValid = event;
     }
 
     hideShowPassword(){
@@ -53,29 +63,28 @@ export class LoginComponent {
 
     onLogin(){
       if(this.loginForm.valid){
-
+        
         //Send the object to database
         this.auth.login(this.loginForm.value)
         .subscribe({
           next:(res)=>{
             // alert(res.message);
-            this.auth.storeToken(res.token);
-            let tokenPayload = this.auth.decodeToken();
-            this.userStore.setFullNameForStore(tokenPayload.unique_name);
-            // console.log(tokenPayload);
-            // console.log(tokenPayload.unique_name);
-            this.userStore.setRoleForStore(tokenPayload.role);
-            // console.log(tokenPayload.role);
-            this.userStore.setUserIdFromStore(tokenPayload.Guid.toString());
-            // console.log(tokenPayload.Guid);
-            this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
-            if(res.role == "User"){
+            // this.auth.storeToken(res.token);
+            // let tokenPayload = this.auth.decodeToken();
+            
+            this.userStore.setFullNameForStore(res.body.name);
+            this.userStore.setRoleForStore(res.body.role);
+            this.userStore.setUserIdFromStore(res.body.guid.toString());
+
+            this.toast.success({detail:"SUCCESS", summary:"Login Success!", duration: 5000});
+            this.router.navigate(['dashboard']);
+            if(res.body.role == "User"){
               this.loginForm.reset();
               this.router.navigate(['dashboard']);
             }
             else{
               this.loginForm.reset();
-              this.router.navigate(['/']);
+              this.router.navigate(['vendor-dashboard']);
             }
           },
           error:(err)=>{
@@ -143,5 +152,6 @@ export class LoginComponent {
   closeModal():void{
 
   }
+
 
 }

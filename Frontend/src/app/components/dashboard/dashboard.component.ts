@@ -28,14 +28,14 @@ export class DashboardComponent {
 
     this.userStore.getFullNameFromStore()
     .subscribe(val=>{
-      let fullNameFromToken = this.auth.getFullNameFromToken();
-      this.fullName = val || fullNameFromToken
+      // let fullNameFromToken = this.auth.getFullNameFromToken();
+      this.fullName = val;
     })
 
     this.userStore.getUserIdFromStore()
     .subscribe(val => {
-      let useridfromtoken = this.auth.getUseridFromToken();
-      this.userId = val || useridfromtoken
+      // let useridfromtoken = this.auth.getUseridFromToken();
+      this.userId = val;
     })
   }
   

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -9,9 +9,13 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   private baseUrl:string = "https://localhost:7031/api/User/"
-  private userPayload: any;
+  // private userPayload: any;
   constructor(private http : HttpClient, private router: Router) {
-    this.userPayload = this.decodeToken();
+    // this.userPayload = {
+    //   "name" : "aditya",
+    //   "role" : "User",
+    //   "guid" : "ad136187458gc841841g"
+    // };
    }
 
    signUp(userObj: any){
@@ -24,7 +28,12 @@ export class AuthService {
    
 
    login(loginObj: any){
-    return this.http.post<any>(`${this.baseUrl}authenticate`,loginObj)
+    const header = new HttpHeaders().set('Content-type', 'application/json');
+    return this.http.post<any>(`${this.baseUrl}authenticate`,loginObj,{
+      headers: header,
+      observe: 'response',
+      withCredentials: true
+    });
    }
 
    signOut(){
@@ -32,38 +41,38 @@ export class AuthService {
     this.router.navigate(['login']);
    }
 
-   storeToken(tokenValue: string){
-    localStorage.setItem('token',tokenValue);
-   }
+  //  storeToken(tokenValue: string){
+  //   localStorage.setItem('token',"logedin");
+  //  }
 
-   getToken(){
-    return localStorage.getItem('token')
-   }
+  //  getToken(){
+  //   return localStorage.getItem('token')
+  //  }
 
-   isLoggedIn(): boolean{
-    return !!localStorage.getItem('token')
-   }
+  //  isLoggedIn(): boolean{
+  //   return !!localStorage.getItem('token')
+  //  }
 
-   decodeToken(){
-    const jwtHelper = new JwtHelperService();
-    const token = this.getToken()!;
-    return jwtHelper.decodeToken(token);
-   }
+  //  decodeToken(){
+  //   const jwtHelper = new JwtHelperService();
+  //   const token = this.getToken()!;
+  //   return jwtHelper.decodeToken(token);
+  //  }
 
-   getFullNameFromToken(){
-    if(this.userPayload)
-    return this.userPayload.name;
-   }
+  //  getFullNameFromToken(){
+  //   if(this.userPayload)
+  //   return this.userPayload.name;
+  //  }
 
-   getRoleFromToken(){
-    if(this.userPayload)
-    return this.userPayload.role;
-   }
+  //  getRoleFromToken(){
+  //   if(this.userPayload)
+  //   return this.userPayload.role;
+  //  }
 
-   getUseridFromToken(){
-    if(this.userPayload)
-    return this.userPayload.guid;
-   }
+  //  getUseridFromToken(){
+  //   if(this.userPayload)
+  //   return this.userPayload.guid;
+  //  }
 
 
 }

@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgToastModule } from 'ng-angular-popup';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+// import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ResetPassword } from './models/reset-password.model';
 import { ResetComponent } from './components/reset/reset.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -27,7 +27,25 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductComponent } from './components/product/product.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { OrderComponent } from './components/order/order.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { PasswordStrengthComponent } from './components/password-strength/password-strength.component';
+import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { RouterModule, Routes }   from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { UploadProductComponent } from './components/vendor-dashboard/upload-product/upload-product.component';
+import { DisplayProductComponent } from './components/vendor-dashboard/display-product/display-product.component';
+import { VendorProfileComponent } from './components/vendor-dashboard/vendor-profile/vendor-profile.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +62,12 @@ import { OrderComponent } from './components/order/order.component';
     FooterComponent,
     ProductComponent,
     SearchResultComponent,
-    OrderComponent
+    OrderComponent,
+    PasswordStrengthComponent,
+    VendorDashboardComponent,
+    UploadProductComponent,
+    DisplayProductComponent,
+    VendorProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -53,12 +76,21 @@ import { OrderComponent } from './components/order/order.component';
     HttpClientModule,
     NgToastModule,
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    RouterModule,
+    MatExpansionModule,
+    MatTooltipModule,
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true},{
       provide: 'SocialAuthServiceConfig',
       useValue: {
         autoLogin: false,

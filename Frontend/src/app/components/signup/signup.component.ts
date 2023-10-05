@@ -17,6 +17,7 @@ export class SignupComponent {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
   signUpForm!: FormGroup;
+  passwordIsValid = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -35,6 +36,10 @@ export class SignupComponent {
       password : ['',Validators.required],
       mobileNumber : ['',Validators.required]
    }) 
+  }
+
+  passwordValid(event : any) {
+    this.passwordIsValid = event;
   }
 
   hideShowPassword(){
