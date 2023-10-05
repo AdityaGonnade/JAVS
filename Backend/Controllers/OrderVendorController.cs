@@ -1,31 +1,63 @@
-using JWT_Token_Example.Order.OrderDataAccess;
+using JAVS_VENDOR.ORDERS.OrderDataAccess;
 using JWT_Token_Example.Order.OrderModels;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace JWT_Token_Example.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class OrderVendorController : ControllerBase
+public class OrderVendorController : Controller
 {
-    private readonly OrderDataAccess dataAccess;
-    public OrderVendorController(OrderDataAccess orderServices)
+    private readonly OrderServices _services;
+    public OrderVendorController(OrderServices orderServices)
     {
-        this.dataAccess = orderServices;
+        this._services = orderServices;
     }
 
     [HttpGet]
 
-    public async Task<List<Orders>> GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        return await dataAccess.GetAllP();
+        try
+        {
+            var req= await _services.GetAllP();
+            if (req == null)
+                return BadRequest("cannot get orders");
+            return Ok(req);
+
+        }
+        catch (Exception ex)
+        {
+            Log.Error("An error occurred while processing");
+            
+            return StatusCode(500, "An internal server error occurred.");
+            
+        }
+            
     }
 
-
-
-     
     [HttpGet("{id}")]
-    public async Task<List<VendorOrdersDTO>> GetAll(string id)
+    public async Task<IActionResult> GetAll(string id)
     {
-        return await dataAccess.GetAllOrdersVendor(id);
+        try
+        {
+            var req= await _services.GetAllOrdersVendor(id);
+            if (req == null)
+                return BadRequest("cannot get orders");
+            return Ok(req);
+
+        }
+        catch (Exception ex)
+        {
+            Log.Error("An error occurred while processing");
+            
+            return StatusCode(500, "An internal server error occurred.");
+            
+        }
+          
     }
+
+
+
+
 }

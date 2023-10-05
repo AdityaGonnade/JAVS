@@ -1,16 +1,21 @@
 using System.Text;
-using JWT_Token_Example.Carts.CartDataAccess;
+using JAVS_VENDOR.CART.CartDataAccess;
+using JAVS_VENDOR.INVENTORY;
+using JAVS_VENDOR.ORDERS.OrderDataAccess;
+using JAVS_VENDOR.Repository;
+using JAVS_VENDOR.REVIEW.REVIEWDataAccess;
 using JWT_Token_Example.Context;
 using JWT_Token_Example.Controllers;
 using JWT_Token_Example.ImageServices;
-using JWT_Token_Example.Inventory.InventoryDataAccess;
 using JWT_Token_Example.Inventory.InventorySearchAccess;
-using JWT_Token_Example.Order.OrderDataAccess;
+using JWT_Token_Example.Models.MongoDBSettings;
+using JWT_Token_Example.Repository;
 using JWT_Token_Example.Reviews.ReviewModels;
 using JWT_Token_Example.UtilityService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +43,6 @@ builder.Services.AddAuthentication(x =>
     });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
@@ -51,35 +55,45 @@ builder.Services.AddCors(options =>
     });
 });
 
-
+//Add Postgres Db
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("JavsConnectionString"));
 });
 
-// builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
-// builder.Services.AddSingleton<CartController>();
+//Add Mongo Db Settings
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbConnection"));
 
-// builder.Services.Configure<CartController>(builder.Configuration.GetSection("MongoDB"));
-// builder.Services.AddSingleton<CartController>();
+var logger = new LoggerConfiguration().WriteTo.Console().WriteTo.File("Logs/App_Log.txt",rollingInterval:RollingInterval.Minute).MinimumLevel.Information()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
-builder.Services.Configure<DataAccess>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<DataAccess>();
-//
-builder.Services.Configure<OrderDataAccess>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<OrderDataAccess>();
-//
-builder.Services.Configure<ReviewDataAccess>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<ReviewDataAccess>();
-//
-builder.Services.Configure<SearchAccess>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<SearchAccess>();
 
-builder.Services.Configure<CartDataAccess>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<CartDataAccess>();
+//Search Access Repository dependency Injection
+builder.Services.AddScoped<ISearchAccessRepo, SearchAccessRepo>();
+//Search Access Service dependency Injection
+builder.Services.AddScoped<ISearchAccess, SearchAccess>();
+builder.Services.AddTransient<SearchAccess>();
+
+//builder.Services.Configure<CartDataAccess>(builder.Configuration.GetSection("MongoDB"));
+//builder.Services.AddSingleton<CartDataAccess>();
+
+builder.Services.AddScoped<ICartRepo, CartDataRepo>();
+builder.Services.AddTransient<CartServices>();
 
 builder.Services.AddScoped<IAWSConfiguration, AWSConfiguration>();
-builder.Services.AddSingleton<S3Service>();
+builder.Services.AddTransient<S3Service>();
+
+
+builder.Services.AddScoped<IReviewRepo, ReviewDataRepo>();
+builder.Services.AddTransient<ReviewServices>();
+
+builder.Services.AddScoped<IInventoryRepo, InventoryDataRepo>();
+builder.Services.AddTransient<InventoryServices>();
+
+builder.Services.AddScoped<IOrderRepo, OrderDataRepo>();
+builder.Services.AddTransient<OrderServices>();
 
 
 var app = builder.Build();

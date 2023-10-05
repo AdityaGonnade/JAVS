@@ -22,6 +22,9 @@
           "NETCore.MailKit": "2.1.0",
           "Npgsql": "7.0.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11",
+          "Serilog.Extensions.Logging": "7.0.0",
+          "Serilog.Sinks.Console": "4.2.0-dev-00918",
+          "Serilog.Sinks.File": "5.0.1-dev-00968",
           "Swashbuckle.AspNetCore": "6.5.0",
           "System.Diagnostics.DiagnosticSource": "7.0.2",
           "System.IdentityModel.Tokens.Jwt": "7.0.0",
@@ -981,6 +984,48 @@
           }
         }
       },
+      "Serilog/2.12.0": {
+        "runtime": {
+          "lib/net6.0/Serilog.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.12.0.0"
+          }
+        }
+      },
+      "Serilog.Extensions.Logging/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "7.0.0",
+          "Serilog": "2.12.0"
+        },
+        "runtime": {
+          "lib/net7.0/Serilog.Extensions.Logging.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        }
+      },
+      "Serilog.Sinks.Console/4.2.0-dev-00918": {
+        "dependencies": {
+          "Serilog": "2.12.0"
+        },
+        "runtime": {
+          "lib/net5.0/Serilog.Sinks.Console.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "Serilog.Sinks.File/5.0.1-dev-00968": {
+        "dependencies": {
+          "Serilog": "2.12.0"
+        },
+        "runtime": {
+          "lib/net6.0/Serilog.Sinks.File.dll": {
+            "assemblyVersion": "5.0.1.0",
+            "fileVersion": "5.0.1.0"
+          }
+        }
+      },
       "SharpCompress/0.30.1": {
         "runtime": {
           "lib/net5.0/SharpCompress.dll": {
@@ -1836,6 +1881,34 @@
       "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+    },
+    "Serilog/2.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xaiJLIdu6rYMKfQMYUZgTy8YK7SMZjB4Yk50C/u//Z4OsvxkUfSPJy4nknfvwAC34yr13q7kcyh4grbwhSxyZg==",
+      "path": "serilog/2.12.0",
+      "hashPath": "serilog.2.12.0.nupkg.sha512"
+    },
+    "Serilog.Extensions.Logging/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9faU0zNQqU7I6soVhLUMYaGNpgWv6cKlKb2S5AnS8gXxzW/em5Ladm/6FMrWTnX41cdbdGPOWNAo6adi4WaJ6A==",
+      "path": "serilog.extensions.logging/7.0.0",
+      "hashPath": "serilog.extensions.logging.7.0.0.nupkg.sha512"
+    },
+    "Serilog.Sinks.Console/4.2.0-dev-00918": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/DJRnXBLbf4B+XNOyToa40KYQLeaQgNCdx6Zi3yfp9ZQKYv5mvztggaEZ9TjAmysFm/1CgDhpkCoJy75okeCAA==",
+      "path": "serilog.sinks.console/4.2.0-dev-00918",
+      "hashPath": "serilog.sinks.console.4.2.0-dev-00918.nupkg.sha512"
+    },
+    "Serilog.Sinks.File/5.0.1-dev-00968": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-139kP+WeSXgyeQmudHu/vOCj1pWKlOLkHtdEfhisoPAGCNhIe8TAjweMpL9iuF+X40flA84w0Oaa4jhzXiM83w==",
+      "path": "serilog.sinks.file/5.0.1-dev-00968",
+      "hashPath": "serilog.sinks.file.5.0.1-dev-00968.nupkg.sha512"
     },
     "SharpCompress/0.30.1": {
       "type": "package",

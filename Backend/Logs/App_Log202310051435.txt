@@ -1,0 +1,54 @@
+2023-10-05 14:35:09.252 +05:30 [INF] User profile is available. Using '/Users/jatin.kasera/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-10-05 14:35:09.318 +05:30 [INF] Now listening on: http://localhost:5077
+2023-10-05 14:35:09.318 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-10-05 14:35:09.318 +05:30 [INF] Hosting environment: Development
+2023-10-05 14:35:09.318 +05:30 [INF] Content root path: /Users/jatin.kasera/Documents/GitHub/JAVS/Backend
+2023-10-05 14:35:09.809 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/index.html - -
+2023-10-05 14:35:09.873 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/index.html - - - 200 - text/html;charset=utf-8 65.5495ms
+2023-10-05 14:35:09.883 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui-bundle.js - -
+2023-10-05 14:35:09.883 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui-standalone-preset.js - -
+2023-10-05 14:35:09.883 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui.css - -
+2023-10-05 14:35:09.886 +05:30 [WRN] Failed to determine the https port for redirect.
+2023-10-05 14:35:09.903 +05:30 [INF] Executing endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.903 +05:30 [INF] Executing endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.903 +05:30 [INF] Executing endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.911 +05:30 [INF] Route matched with {action = "GetDocumentFromS3", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetDocumentFromS3(System.String, System.String) on controller JWT_Token_Example.Controllers.ImageController (JWT_Token_Example).
+2023-10-05 14:35:09.911 +05:30 [INF] Route matched with {action = "GetDocumentFromS3", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetDocumentFromS3(System.String, System.String) on controller JWT_Token_Example.Controllers.ImageController (JWT_Token_Example).
+2023-10-05 14:35:09.911 +05:30 [INF] Route matched with {action = "GetDocumentFromS3", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetDocumentFromS3(System.String, System.String) on controller JWT_Token_Example.Controllers.ImageController (JWT_Token_Example).
+2023-10-05 14:35:09.922 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-10-05 14:35:09.922 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-10-05 14:35:09.922 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-10-05 14:35:09.925 +05:30 [INF] Executed action JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example) in 11.7756ms
+2023-10-05 14:35:09.925 +05:30 [INF] Executed action JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example) in 11.7591ms
+2023-10-05 14:35:09.925 +05:30 [INF] Executed action JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example) in 11.6764ms
+2023-10-05 14:35:09.926 +05:30 [INF] Executed endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.926 +05:30 [INF] Executed endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.926 +05:30 [INF] Executed endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.926 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui-bundle.js - - - 400 - text/plain;+charset=utf-8 43.1255ms
+2023-10-05 14:35:09.926 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui-standalone-preset.js - - - 400 - text/plain;+charset=utf-8 43.1255ms
+2023-10-05 14:35:09.926 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui.css - - - 400 - text/plain;+charset=utf-8 43.1456ms
+2023-10-05 14:35:09.935 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/favicon-32x32.png - -
+2023-10-05 14:35:09.937 +05:30 [INF] Executing endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.937 +05:30 [INF] Route matched with {action = "GetDocumentFromS3", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetDocumentFromS3(System.String, System.String) on controller JWT_Token_Example.Controllers.ImageController (JWT_Token_Example).
+2023-10-05 14:35:09.938 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-10-05 14:35:09.938 +05:30 [INF] Executed action JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example) in 0.6683ms
+2023-10-05 14:35:09.938 +05:30 [INF] Executed endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.938 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/favicon-32x32.png - - - 400 - text/plain;+charset=utf-8 3.1446ms
+2023-10-05 14:35:09.943 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/favicon-16x16.png - -
+2023-10-05 14:35:09.943 +05:30 [INF] Executing endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.943 +05:30 [INF] Route matched with {action = "GetDocumentFromS3", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetDocumentFromS3(System.String, System.String) on controller JWT_Token_Example.Controllers.ImageController (JWT_Token_Example).
+2023-10-05 14:35:09.943 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-10-05 14:35:09.943 +05:30 [INF] Executed action JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example) in 0.3485ms
+2023-10-05 14:35:09.944 +05:30 [INF] Executed endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:09.944 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/favicon-16x16.png - - - 400 - text/plain;+charset=utf-8 1.0255ms
+2023-10-05 14:35:15.453 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui.css - -
+2023-10-05 14:35:15.454 +05:30 [INF] Executing endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:15.454 +05:30 [INF] Route matched with {action = "GetDocumentFromS3", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetDocumentFromS3(System.String, System.String) on controller JWT_Token_Example.Controllers.ImageController (JWT_Token_Example).
+2023-10-05 14:35:15.455 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-10-05 14:35:15.455 +05:30 [INF] Executed action JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example) in 0.6242ms
+2023-10-05 14:35:15.455 +05:30 [INF] Executed endpoint 'JWT_Token_Example.Controllers.ImageController.GetDocumentFromS3 (JWT_Token_Example)'
+2023-10-05 14:35:15.455 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/swagger/swagger-ui.css - - - 400 - text/plain;+charset=utf-8 1.7530ms
+2023-10-05 14:35:45.760 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5077/BuyerCart - -
+2023-10-05 14:35:45.760 +05:30 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2023-10-05 14:35:45.761 +05:30 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2023-10-05 14:35:45.761 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5077/BuyerCart - - - 405 0 - 0.9940ms
